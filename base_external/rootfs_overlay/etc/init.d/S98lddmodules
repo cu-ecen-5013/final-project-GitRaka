@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		echo "Starting scull_load and module_load scripts."
+		sh /etc/init.d/scull_load
+		sh /etc/init.d/module_load faulty
+		sh /etc/init.d/aesdchar_load
+		modprobe hello
+	;;
+	stop)
+		echo "Stopping scull_load and module_load scripts."
+		sh /etc/init.d/scull_unload
+		sh /etc/init.d/module_unload faulty
+		sh /etc/init.d/aesdchar_unload
+		rmmod hello
+	;;
+	*)
+		echo "Usage: $0 {start|stop}"
+	exit 1
+esac
+exit 0
