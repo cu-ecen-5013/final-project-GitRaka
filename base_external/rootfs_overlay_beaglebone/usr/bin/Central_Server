@@ -3,7 +3,7 @@
 case "$1" in
         start)
                 echo "Starting MQTT Subscribe."
-                mosquitto_sub -h localhost -t test
+                mosquitto_sub -h 10.0.0.47 -t test
         ;;
         stop)
         ;;
