@@ -1,8 +1,9 @@
 import paho.mqtt.client as mqtt
-MQTT_SERVER = "10.0.0.47"
+MQTT_SERVER = "localhost"
 MQTT_PATH = "Image"
 
-n = 0;
+n = 0
+
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -16,7 +17,8 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     # more callbacks, etc
     # Create a file with write byte permission
-    rxfile = "output"+str(int(n)) + ".jpg"
+    global n
+    rxfile = "output" + str(int(n)) + ".jpg"
     f = open(rxfile, "wb")
     f.write(msg.payload)
     print("Image Received")
