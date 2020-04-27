@@ -1,4 +1,6 @@
 import paho.mqtt.client as mqtt
+import time
+import datetime
 MQTT_SERVER = "localhost"
 MQTT_PATH = "Image"
 
@@ -18,7 +20,7 @@ def on_message(client, userdata, msg):
     # more callbacks, etc
     # Create a file with write byte permission
     global n
-    rxfile = "output" + str(int(n)) + ".jpg"
+    rxfile = "output_" + str(int(n)) + "_" + str(datetime.datetime.now().replace(microsecond=0)) + ".jpg"
     f = open(rxfile, "wb")
     f.write(msg.payload)
     print("Image Received")
